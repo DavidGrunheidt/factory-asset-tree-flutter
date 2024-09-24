@@ -16,12 +16,6 @@ That's it, you are ready to go!
 ### Tests
 - Run `make ci-tests` to run all unit tests
 
-### CI/CD (not implemented)
-
-- We will use [Codemagic][codemagic] to run our pipelines, which are divided in:
-    - `pr-checks`: Runs everytime you open a PR and commit changes to that PR's branch. Basically it checks for correct `.dart` file formatting, runs the static code analyzer and build the Android and iOS apps to make sure everything is ok before merging the PR.
-    - `stg-build`: Once a PR is merged into staging branch, this pipeline will build the Android and iOS apps and distribute them to [Firebase App Distribution - STG][firebase-app-distribution-stg]
-    - `prod-release`: Once a PR is merged into main branch, this pipeline will build the Android and iOS apps and distribute them to [Firebase App Distribution - PROD][firebase-app-distribution-stg]. It will also generate a new tag and a new release on GitHub with the latest updates and the `.ipa` and `.aab` artifacts, alongside with other important artifacts. These will be used to manually create a new release on `Play Console` and `Apple Connect`.
 ## Overview
 
 ### Architecture

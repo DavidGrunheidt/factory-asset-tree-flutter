@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
 import 'package:factory_asset_tree_flutter/core/constants/app_widget_keys.dart';
+import 'package:factory_asset_tree_flutter/core/router/app_router.dart';
 import 'package:factory_asset_tree_flutter/features/companies/repository/companies_repository.dart';
 import 'package:factory_asset_tree_flutter/features/companies/service/companies_service.dart';
 import 'package:factory_asset_tree_flutter/features/companies/view/companies_view.dart';
@@ -79,6 +80,25 @@ void main() {
       verify(getCompanies());
       verifyNoMoreInteractions(mockApiClient);
       verifyZeroInteractions(mockStackRouter);
+    });
+
+    testWidgets('click on company goes to company asset page', (tester) async {
+      Future<void> pushCompanyAssetsRoute() => mockStackRouter.push(
+            CompanyAssetRoute(companyId: expectedCompanies.first.id),
+          );
+
+      when(getCompanies()).thenAnswer((_) async => Response(requestOptions: reqOpts, data: companiesJson));
+      when(pushCompanyAssetsRoute()).thenAnswer((_) async {});
+      await pumpCompaniesView(tester);
+
+      final firstCompanyBtn = find.textContaining(expectedCompanies.first.name);
+      await tester.tap(firstCompanyBtn);
+      await tester.pumpAndSettle();
+
+      verify(getCompanies());
+      verify(pushCompanyAssetsRoute());
+      verifyNoMoreInteractions(mockApiClient);
+      verifyNoMoreInteractions(mockStackRouter);
     });
   });
 }

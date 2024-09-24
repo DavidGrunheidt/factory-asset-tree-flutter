@@ -6,10 +6,12 @@ import 'company_asset_view_model.dart';
 
 @RoutePage()
 class CompanyAssetView extends StatefulWidget {
+  final String companyId;
   final CompanyAssetViewModel? viewModel;
 
   const CompanyAssetView({
     super.key,
+    @PathParam('id') required this.companyId,
     this.viewModel,
   });
 

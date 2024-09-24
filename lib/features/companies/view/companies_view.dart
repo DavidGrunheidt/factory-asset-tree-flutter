@@ -11,7 +11,7 @@ import '../../../core/design_system/theme/custom_text_style.dart';
 import '../../../core/design_system/widgets/custom_spacer.dart';
 import '../../../core/design_system/widgets/custom_svg_icon.dart';
 import '../../../core/design_system/widgets/tractian_logo_svg.dart';
-import '../../../core/helpers/snackbar_helper.dart';
+import '../../../core/router/app_router.dart';
 import '../../base_view_model_container.dart';
 import 'companies_view_model.dart';
 
@@ -74,7 +74,7 @@ class _CompaniesViewState extends State<CompaniesView> {
                               borderRadius: BorderRadius.circular(CustomRadius.s),
                             ),
                             child: InkWell(
-                              onTap: () => showSnackbar(context: context, content: 'Oi'),
+                              onTap: () => context.pushRoute(CompanyAssetRoute(companyId: company.id)),
                               borderRadius: BorderRadius.circular(CustomRadius.s),
                               child: Ink(
                                 padding: CustomSpacer.all.xmd,

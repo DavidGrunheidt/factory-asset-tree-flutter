@@ -43,9 +43,6 @@ adb-restart:
 build-web-stg:
 	fvm flutter build web --release --web-renderer html -t lib/main_stg.dart
 
-build-web-prod:
-	fvm flutter build web --release --web-renderer html -t lib/main_prod.dart
-
 build-ipa-stg:
 	fvm flutter build ipa --release --flavor stg -t lib/main_stg.dart --build-number=${PROJECT_BUILD_NUMBER} --export-options-plist=./ios/export_options_stg.plist --no-tree-shake-icons
 

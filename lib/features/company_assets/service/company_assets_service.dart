@@ -11,6 +11,7 @@ abstract class CompanyAssetsService {
 
 @Injectable(as: CompanyAssetsService)
 class CompanyAssetsServiceImpl implements CompanyAssetsService {
+  // ignore: unused_field
   final ApiClient _apiClient;
 
   const CompanyAssetsServiceImpl(@Named(kTractianApiClient) this._apiClient);

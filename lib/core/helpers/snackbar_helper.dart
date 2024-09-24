@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../constants/app_widget_keys.dart';
 import '../design_system/theme/custom_colors.dart';
 import '../design_system/widgets/custom_spacer.dart';
 
@@ -41,6 +42,7 @@ void showSnackbar({
 
 void showCurrentlyDisabledSnackbar(BuildContext context) {
   return showSnackbar(
+    key: currentDisabledSnackbarKey,
     context: context,
     content: 'Ops! This feature can\'t be used at this moment',
   );

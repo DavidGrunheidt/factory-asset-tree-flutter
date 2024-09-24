@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -45,11 +47,11 @@ class _CompaniesViewState extends State<CompaniesView> {
           return Scrollbar(
             thumbVisibility: true,
             child: RefreshIndicator(
-              onRefresh: () => _viewModel.init(),
+              onRefresh: () async => unawaited(_viewModel.init()),
               child: CustomScrollView(
                 physics: AlwaysScrollableScrollPhysics(parent: ClampingScrollPhysics()),
                 slivers: [
-                  if (companies.isEmpty)
+                  if (!_viewModel.loading && companies.isEmpty)
                     SliverFillRemaining(
                       child: Center(
                         child: Text(

@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../router/app_router.dart';
@@ -8,7 +7,7 @@ import 'dependency_injector.dart';
 const appRouterInstanceName = 'tabsRouter';
 
 void registerGlobalAppRouter(AppRouter appRouter) {
-  if (getIt.isRegistered<TabsRouter>(instanceName: appRouterInstanceName)) return;
+  if (getIt.isRegistered<AppRouter>(instanceName: appRouterInstanceName)) return;
   getIt.registerSingleton<AppRouter>(appRouter, instanceName: appRouterInstanceName);
 }
 

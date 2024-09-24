@@ -14,7 +14,7 @@ class TractianLogoSvg extends StatelessWidget {
     super.key,
     this.screenWidthPercentage = 0.3,
     this.maxWidth = 300,
-    this.logoAssetPath = AppAssets.tractianHorizontalWhiteLogo,
+    this.logoAssetPath = AppAssets.tractianHorizontalWhiteLogoSvg,
   });
 
   @override

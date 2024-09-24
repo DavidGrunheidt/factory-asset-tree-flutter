@@ -8,7 +8,7 @@ import 'api_client.dart';
 
 @Named(kTractianApiClient)
 @Injectable(as: ApiClient)
-class AlgoliaApiClient extends ApiClient {
+class TractianApiClient extends ApiClient {
   final _baseUrl = switch (appBuildFlavor) {
     AppBuildFlavorEnum.STG => 'https://fake-api.tractian.com',
     AppBuildFlavorEnum.PROD => 'https://fake-api.tractian.com',

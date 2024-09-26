@@ -33,7 +33,7 @@ extension CompanyTreeItemNodeModelExtension on CompanyTreeItemNodeModel {
     final itemNode = item;
     final isEnergySensor = filter.energySensor && itemNode is CompanyAssetModel && itemNode.sensorType.isEnergy;
     final isAlertStatus = filter.criticalStatus && itemNode is CompanyAssetModel && itemNode.status.isAlert;
-    final containsQuery = filter.query != null && itemNode.name.contains(filter.query!);
+    final containsQuery = filter.query != null && itemNode.name.toLowerCase().contains(filter.query!.toLowerCase());
     return isEnergySensor || isAlertStatus || containsQuery || nodes.any((el) => el.matchesFilter(filter));
   }
 }

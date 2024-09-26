@@ -20,7 +20,7 @@ That's it, you are ready to go!
 
 ## To improve
 
-- Paginate CompayItemsView with 200~ assets per page. Even though we are using slivers and the items are only being rendered if they are visible, when the number of items is too much like thousands we still have a frame rendering performance issue. Having a local pagination would solve that. All the items would still be on memory and loaded at once but we would then show only a few per page. 
+- When filtering a huge list there's a small delay on one of the frames rendering. We need to improve that to make the tap more smoother and also the transition to the filtering state smoother.
 
 ### Tests
 - Run `make ci-tests` to run all unit tests

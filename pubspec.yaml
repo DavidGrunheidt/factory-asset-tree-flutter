@@ -32,7 +32,6 @@ dependencies:
 
   # UI
   flutter_svg: ^2.0.10+1
-  sliver_tools: ^0.2.12
 
 dev_dependencies:
   flutter_test:

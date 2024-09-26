@@ -1,10 +1,8 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:sliver_tools/sliver_tools.dart';
 
 import '../../../core/constants/app_generic_constants.dart';
 import '../../../core/constants/app_widget_keys.dart';
@@ -34,6 +32,7 @@ class CompanyItemsView extends StatefulWidget {
 
 class _CompanyItemsViewState extends State<CompanyItemsView> {
   late final _viewModel = widget.viewModel ?? getIt<CompanyItemsViewModel>();
+  final _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -60,43 +59,43 @@ class _CompanyItemsViewState extends State<CompanyItemsView> {
             final companyItemsTree = _viewModel.companyItemsTree;
             return Padding(
               padding: EdgeInsets.only(top: kFiltersHeight),
-              child: Scrollbar(
-                thumbVisibility: true,
-                child: RefreshIndicator(
-                  onRefresh: () async => unawaited(_viewModel.init()),
-                  child: CustomScrollView(
-                    physics: AlwaysScrollableScrollPhysics(parent: ClampingScrollPhysics()),
-                    slivers: [
-                      if (!_viewModel.loading && companyItemsTree.isEmpty)
-                        SliverFillRemaining(
-                          hasScrollBody: false,
-                          child: Padding(
-                            padding: CustomSpacer.all.md,
-                            child: Center(
-                              child: Text(
-                                key: kNoAssetsAvailableForCompanyTextKey,
-                                'No locations and assets found for this company.',
-                                style: CustomTextStyle.headlineLarge.copyWith(color: CustomColors.darkBlue),
-                              ),
+              child: RefreshIndicator(
+                onRefresh: () async => unawaited(_viewModel.init()),
+                child: CustomScrollView(
+                  controller: _scrollController,
+                  physics: AlwaysScrollableScrollPhysics(parent: ClampingScrollPhysics()),
+                  slivers: [
+                    if (!_viewModel.loading && companyItemsTree.isEmpty)
+                      SliverFillRemaining(
+                        hasScrollBody: false,
+                        child: Padding(
+                          padding: CustomSpacer.all.md,
+                          child: Center(
+                            child: Text(
+                              key: kNoAssetsAvailableForCompanyTextKey,
+                              'No locations and assets found for this company.',
+                              style: CustomTextStyle.headlineLarge.copyWith(color: CustomColors.darkBlue),
                             ),
                           ),
                         ),
-                      MultiSliver(
-                        children: [
-                          ...companyItemsTree.mapIndexed((index, itemNode) {
-                            return CompanyTreeItemNodeWidget(
-                              itemNode: itemNode,
-                              filter: _viewModel.filter,
-                              isRoot: true,
-                            );
-                          }).toList(),
-                          SliverToBoxAdapter(
-                            child: SizedBox(height: CustomSpacer.bottom.xlg.bottom),
-                          )
-                        ],
                       ),
-                    ],
-                  ),
+                    SliverList.builder(
+                      itemCount: companyItemsTree.length,
+                      itemBuilder: (context, index) {
+                        final itemNode = companyItemsTree[index];
+                        return Observer(
+                          builder: (context) => CompanyTreeItemNodeWidget(
+                            itemNode: itemNode,
+                            filter: _viewModel.filter,
+                            isRoot: true,
+                          ),
+                        );
+                      },
+                    ),
+                    SliverToBoxAdapter(
+                      child: SizedBox(height: CustomSpacer.bottom.xlg.bottom),
+                    ),
+                  ],
                 ),
               ),
             );

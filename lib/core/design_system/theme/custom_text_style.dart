@@ -7,6 +7,9 @@ class CustomTextStyle {
   static const TextStyle labelSmall = TextStyle(fontFamily: 'Roboto', fontSize: 14, fontWeight: FontWeight.w400);
 
   static const TextStyle robotoMediumLg = TextStyle(fontFamily: 'Roboto', fontSize: 18, fontWeight: FontWeight.w500);
+  static const TextStyle robotoRegularLg = TextStyle(fontFamily: 'Roboto', fontSize: 18, fontWeight: FontWeight.w400);
+  static const TextStyle robotoBodyRegular = TextStyle(fontFamily: 'Roboto', fontSize: 14, fontWeight: FontWeight.w400);
+  static const TextStyle robotoMediumSm = TextStyle(fontFamily: 'Roboto', fontSize: 14, fontWeight: FontWeight.w500);
 
   const CustomTextStyle._();
 }

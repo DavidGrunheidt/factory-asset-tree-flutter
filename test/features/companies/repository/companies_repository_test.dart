@@ -54,7 +54,7 @@ void main() {
       verifyNoMoreInteractions(mockCompaniesService);
     });
 
-    test('loadCompanies loads list with 3 items', () async {
+    test('loadCompanies loads list with items', () async {
       when(loadCompanies()).thenAnswer((_) async => expectedCompanies);
       await repository.loadCompanies();
 

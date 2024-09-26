@@ -31,7 +31,6 @@ dependencies:
   copy_with_extension: ^5.0.4
 
   # UI
-  expandable: ^5.0.1
   flutter_svg: ^2.0.10+1
 
 dev_dependencies:

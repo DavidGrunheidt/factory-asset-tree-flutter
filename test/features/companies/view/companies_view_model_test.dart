@@ -57,7 +57,7 @@ void main() {
       verifyNoMoreInteractions(mockCompaniesRepository);
     });
 
-    test('init loads companies with empty list', () async {
+    test('init loads companies with items', () async {
       when(loadCompanies()).thenAnswer((_) async {});
       when(getCompanies()).thenAnswer((_) => expectedCompanies.asObservable());
 

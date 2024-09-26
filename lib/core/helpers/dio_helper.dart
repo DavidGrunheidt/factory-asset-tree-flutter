@@ -1,14 +1,13 @@
 import 'package:curl_logger_dio_interceptor/curl_logger_dio_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 Dio createDio(BaseOptions opts, List<Interceptor> interceptors) {
   final dio = Dio(opts);
   if (kDebugMode) {
     dio.interceptors.addAll([
       CurlLoggerDioInterceptor(printOnSuccess: true),
-      PrettyDioLogger(requestHeader: true, requestBody: true, responseHeader: true),
+      // PrettyDioLogger(requestHeader: true, requestBody: true, responseHeader: true),
     ]);
   }
 

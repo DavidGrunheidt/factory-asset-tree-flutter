@@ -27,7 +27,7 @@ void main() {
 
       final dio = createDio(baseOptions, []);
 
-      expect(dio.interceptors.length, 3);
+      expect(dio.interceptors.length, 2);
       expect(dio.options.baseUrl, baseUrl);
       expect(dio.options.connectTimeout, baseOptions.connectTimeout);
       expect(dio.options.receiveTimeout, baseOptions.receiveTimeout);

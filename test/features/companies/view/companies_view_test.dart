@@ -51,9 +51,10 @@ void main() {
 
     tearDown(() {
       reset(mockApiClient);
+      reset(mockStackRouter);
     });
 
-    testWidgets('show no companies available message', (tester) async {
+    testWidgets('shows no companies available message', (tester) async {
       when(getCompanies()).thenAnswer((_) async => Response(requestOptions: reqOpts, data: []));
       await pumpCompaniesView(tester);
 
@@ -66,7 +67,7 @@ void main() {
       verifyZeroInteractions(mockStackRouter);
     });
 
-    testWidgets('init loads companies with empty list', (tester) async {
+    testWidgets('shows all companies names', (tester) async {
       when(getCompanies()).thenAnswer((_) async => Response(requestOptions: reqOpts, data: companiesJson));
       await pumpCompaniesView(tester);
 
@@ -84,7 +85,7 @@ void main() {
 
     testWidgets('click on company goes to company asset page', (tester) async {
       Future<void> pushCompanyAssetsRoute() => mockStackRouter.push(
-            CompanyAssetRoute(companyId: expectedCompanies.first.id),
+            CompanyItemsRoute(companyId: expectedCompanies.first.id),
           );
 
       when(getCompanies()).thenAnswer((_) async => Response(requestOptions: reqOpts, data: companiesJson));

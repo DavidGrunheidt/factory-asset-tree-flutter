@@ -37,7 +37,7 @@ void main() {
       verifyNoMoreInteractions(mockApiClient);
     });
 
-    test('getCompanies returns list with 3 items', () async {
+    test('getCompanies returns list with items', () async {
       when(getCompanies()).thenAnswer((_) async => Response(requestOptions: reqOpts, data: companiesJson));
       final resp = await service.getCompanies();
 

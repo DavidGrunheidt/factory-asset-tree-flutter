@@ -1,17 +1,26 @@
 ![Coverage](./coverage_badge.svg)
 
-# Asset Tree Flutter Mobile App
-
+# Asset Tree Flutter App
 ## Project setup
 
 - Install [Flutter Version Management][fvm]
 - Make sure you have the latest fvm version: `fvm --version`
 - Run `make clean` to get all dependencies for the project
 - It will ask if you want to download the project's Flutter version. Type `y` and enter:
-- ![fvmInstall](https://private-user-images.githubusercontent.com/26250624/312565341-38d2d4de-db33-4bdf-bec3-34757d6b2950.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjcyMTYzNjMsIm5iZiI6MTcyNzIxNjA2MywicGF0aCI6Ii8yNjI1MDYyNC8zMTI1NjUzNDEtMzhkMmQ0ZGUtZGIzMy00YmRmLWJlYzMtMzQ3NTdkNmIyOTUwLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA5MjQlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwOTI0VDIyMTQyM1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTFkMGM5NmViZmJkOTUyNGY0MmRhMTMyYjcxZGY0NGU3YWRkZTUxNjQ2MjlmZDc1Y2FhNDc3NTMxODYxZjI5MzgmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.CcusjvlE3lrxOFDApOGVKAYZuqH-c2X3_E3CZS2-zTY)
+- ![fvmInstall](https://i.imgur.com/KIFaCc5.png)
 - Run `make gen-code` to generate all missing code
 
 That's it, you are ready to go!
+
+## App videos
+
+- Jaguar unit (small number of items): https://i.imgur.com/nni4Q1i.mp4
+- Tobias unit (medium number of items): https://i.imgur.com/GPnqztx.mp4
+- Apex unit (high number of items): https://i.imgur.com/VmU22JN.mp4
+
+## To improve
+
+- Paginate CompayItemsView with 200~ assets per page. Even though we are using slivers and the items are only being rendered if they are visible, when the number of items is too much like thousands we still have a frame rendering performance issue. Having a local pagination would solve that. All the items would still be on memory and loaded at once but we would then show only a few per page. 
 
 ### Tests
 - Run `make ci-tests` to run all unit tests
@@ -41,6 +50,7 @@ That's it, you are ready to go!
 - Repositories are the mediators between data sources, such as local databases, data in files, web services, and caches.
 - Repositories can contain global state.
 - Repositories can access local persisted state (shared preferences, local DB, etc).
+- Repositories parse errors into AppInternalCode with codes for every error we might encounter
 
 ### Models
 
@@ -80,7 +90,7 @@ That's it, you are ready to go!
 ## main_<flavor>.dart
 
 - Entry point for each Flavor of the app
-- There is one Flavor per environment (dev, qa, prod)
+- There is one Flavor per environment (stg, prod)
 - Use `flavors.dart` to define Flavor specific values that are not secret (baseURL, etc).
 
 [fvm]: https://fvm.app/documentation/getting-started/installation
